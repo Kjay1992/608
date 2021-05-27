@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit a booking</title>
+     <link rel="stylesheet" type="text/css" media="all"
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"    />
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 2
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 2
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
+    </script>
+    </head>
+<body>
+
+    <form>
+    <lable for="ROOM">Room(Name,Type,Beds):</lable>
+    <select id="roomID" name="roomname" required>
+        <option value="1">room1</option>
+        </select>
+        <br>
+        <lable for="from">Checkin date:</lable>
+    <input type="text" id="from" name="from">
+        <br>
+        <lable for="to">Checkout date:</lable>
+    <input type="text" id="to" name="to">
+        <br>
+        <lable for="contact">Contact number:</lable>
+    <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        <br>
+        <lable for="bookx">Booking extras:</lable>
+    <input type="text">
+        <br>
+    
+        <button>Update</button> <a href="currentbooking.html">[cancel]</a>
+    </form>
+    
+    
+    
+    
+    
+    
+    
+    </body>
+</html>
